@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='TDDUITests.xctest' tests='5' failures='0'>
+  <testsuite name='TDDTests.TDDTests' tests='2' failures='0'>
+    <testcase classname='TDDTests.TDDTests' name='testExample' time='0.001'/>
+    <testcase classname='TDDTests.TDDTests' name='testPerformanceExample' time='0.509'/>
+  </testsuite>
+  <testsuite name='TDDTests.UserTests' tests='2' failures='0'>
+    <testcase classname='TDDTests.UserTests' name='testInvalidEmail' time='0.017'/>
+    <testcase classname='TDDTests.UserTests' name='testValidEmail' time='0.001'/>
+  </testsuite>
+  <testsuite name='TDDUITests.TDDUITests' tests='1' failures='0'>
+    <testcase classname='TDDUITests.TDDUITests' name='testExample' time='6.245'/>
+  </testsuite>
+</testsuites>
