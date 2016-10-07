@@ -31,6 +31,7 @@ class UserTests: XCTestCase {
                                "email@example.museum",
                                "email@example.co.jp",
                                "firstname-lastname@example.com"]
+        
         let user = User()
         for email in emailCollection {
             user.email = email
@@ -50,6 +51,7 @@ class UserTests: XCTestCase {
                                "email@example.com (Joe Smith)",
                                "email@example",
                                "email@111.222.333.44444"]
+        
         let user = User()
         for email in emailCollection {
             user.email = email
