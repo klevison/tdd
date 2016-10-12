@@ -9,25 +9,23 @@
 import XCTest
 @testable import TDD
 
-class SignInPresenterMock: SignInPresenterProtocol, SignInInteractorOutputProtocol {
-    
-    var view: SignInViewProtocol?
-    var interactor: SignInInteractorInputProtocol?
-    var loginCalled = false
-    
-    init(view: SignInViewProtocol) {
-        self.view = view
-        interactor = SignInInteractor()
-        interactor?.presenter = self
-    }
-    
-    func login(user: User) {
-        loginCalled = true
-    }
-}
-
-
 class SignInViewControllerTests: XCTestCase {
+    
+    class SignInPresenterMock: SignInPresenterProtocol {
+        
+        var view: SignInViewProtocol?
+        var interactor: SignInInteractorInputProtocol?
+        var loginCalled = false
+        
+        init(view: SignInViewProtocol) {
+            self.view = view
+        }
+        
+        func login(user: User) {
+            loginCalled = true
+        }
+        
+    }
 
     var mockPresenter: SignInPresenterMock!
     var signInViewController: SignInViewController!
@@ -45,7 +43,7 @@ class SignInViewControllerTests: XCTestCase {
         super.tearDown()
     }
   
-    func testShouldCallSignInPresenterWhenLoginButtonTapped() {
+    func testViewShouldCallPresenterLoginMethodAfterLoginButtonTapped() {
         signInViewController.loginButtonTapped()
         XCTAssertTrue(mockPresenter.loginCalled,"loginCalled should be true")
     }

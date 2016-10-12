@@ -19,6 +19,11 @@ class SignInPresenter: SignInPresenterProtocol, SignInInteractorOutputProtocol {
     }
     
     func login(user: User) {
-        
+        interactor?.login(user: user)
     }
+    
+    func userLogged(user: User?) {
+        view?.userLogged(user: user)
+    }
+    
 }

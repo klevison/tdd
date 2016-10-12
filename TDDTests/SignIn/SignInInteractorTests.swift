@@ -6,32 +6,48 @@
 //  Copyright © 2016 Klevison Matias. All rights reserved.
 //
 
-import Foundation
+import XCTest
 @testable import TDD
 
-class SignInInteractorMock: SignInInteractorInputProtocol {
+class SignInInteractorTests: XCTestCase {
     
-    weak var presenter: SignInInteractorOutputProtocol?
-    var APIDataManager: SignInAPIDataManagerInputProtocol?
-    var localDatamanager: SignInLocalDataManagerInputProtocol?
-    var loginCalled = false
+    class SignInPresenterOutputMock: SignInPresenterProtocol, SignInInteractorOutputProtocol {
+        
+        weak var view: SignInViewProtocol?
+        var interactor: SignInInteractorInputProtocol?
+        var userLoggedCalled = false
+        
+        init(view: SignInViewProtocol) {
+            self.view = view
+            interactor = SignInInteractor()
+            interactor?.presenter = self
+        }
+        
+        func login(user: User) {
+            interactor?.login(user: user)
+        }
+        
+        func userLogged(user: User?) {
+            userLoggedCalled = true
+        }
+        
+    }
+ 
+    var signInViewController: SignInViewController!
+    var mockPresenter: SignInPresenterOutputMock!
     
-    init() {
-        APIDataManager = SignInAPIDataManager()
-        localDatamanager = SignInLocalDataManager()
+    override func setUp() {
+        super.setUp()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        signInViewController = storyboard.instantiateInitialViewController() as? SignInViewController
+        mockPresenter = SignInPresenterOutputMock(view: signInViewController)
     }
     
-    func login(user: User) {
-        loginCalled = true
+    func testInterectorShouldCallPresenterUserLoggedMethodAfterExecuteLoginMethod() {
+        mockPresenter.interactor?.login(user: User())
+        XCTAssertTrue(mockPresenter.userLoggedCalled,"loginCalled should be true")
     }
     
 }
 
-//func testShouldCallSignInInteractor() {
-//    let user = User()
-//    user.email = "klevison@gmail.com"
-//    user.name = "Klevison"
-//    
-//    mocksgnInInteractor.login(user: user)
-//    XCTAssert(mocksgnInInteractor.loginCalled,"loginCalled should be true")
-//}
+

@@ -27,6 +27,8 @@ final class SignInViewController: UIViewController {
 
 extension SignInViewController: SignInViewProtocol {
     
-    
+    func userLogged(user: User?) {
+        
+    }
     
 }

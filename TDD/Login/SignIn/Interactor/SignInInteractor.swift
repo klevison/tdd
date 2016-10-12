@@ -20,7 +20,7 @@ class SignInInteractor: SignInInteractorInputProtocol {
     }
     
     func login(user: User) {
-    
+        presenter?.userLogged(user: user)
     }
     
     

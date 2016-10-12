@@ -13,7 +13,8 @@ protocol SignInViewProtocol: class {
     /**
     * Add here your methods for communication PRESENTER -> VIEW
     */
-
+    
+    func userLogged(user: User?)
 }
 
 protocol SignInPresenterProtocol: class {
@@ -31,6 +32,8 @@ protocol SignInInteractorOutputProtocol: class {
     /**
     * Add here your methods for communication INTERACTOR -> PRESENTER
     */
+    
+    func userLogged(user: User?)
 }
 
 protocol SignInInteractorInputProtocol: class {
